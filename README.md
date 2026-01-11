@@ -1,2 +1,2 @@
-# PROYECTOP3
+# ProyectoP3
 PROYECTO P3
