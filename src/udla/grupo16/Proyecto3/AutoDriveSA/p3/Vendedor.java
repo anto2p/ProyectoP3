@@ -1,19 +1,27 @@
 package udla.grupo16.Proyecto3.AutoDriveSA.p3;
 
+/**
+ * Define los atributos y comportamiento de la entidad Vendedor.
+ */
 public class Vendedor implements Imprimir {
-    private int idVendedor;       // ID Autoincremental de la base de datos
-    private String cedula;        // Nuevo campo identificador
+    /** Atributos de identificación y perfil profesional */
+    private int idVendedor;
+    private String cedula;
     private String Nombre_Completo;
     private double anos_exp;
 
-    // CONSTRUCTOR 1: Para crear un vendedor nuevo
+    /**
+     * Constructor para instancias nuevas sin ID asignado.
+     */
     public Vendedor(String cedula, String nombre_Completo, double anos_exp) {
         this.cedula = cedula;
         this.Nombre_Completo = nombre_Completo;
         this.anos_exp = anos_exp;
     }
 
-    // CONSTRUCTOR 2: Para cuando cargamos datos desde la Base de Datos
+    /**
+     * Constructor para reconstruir objetos desde la base de datos.
+     */
     public Vendedor(int idVendedor, String cedula, String nombre_Completo, double anos_exp) {
         this.idVendedor = idVendedor;
         this.cedula = cedula;
@@ -21,41 +29,22 @@ public class Vendedor implements Imprimir {
         this.anos_exp = anos_exp;
     }
 
-    // --- GETTERS Y SETTERS ---
+    /** Métodos de acceso (Getters y Setters) */
+    public int getIdVendedor() { return idVendedor; }
+    public void setIdVendedor(int idVendedor) { this.idVendedor = idVendedor; }
 
-    public int getIdVendedor() {
-        return idVendedor;
-    }
+    public String getCedula() { return cedula; }
+    public void setCedula(String cedula) { this.cedula = cedula; }
 
-    public void setIdVendedor(int idVendedor) {
-        this.idVendedor = idVendedor;
-    }
+    public String getNombre_Completo() { return Nombre_Completo; }
+    public void setNombre_Completo(String nombre_Completo) { Nombre_Completo = nombre_Completo; }
 
-    public String getCedula() {
-        return cedula;
-    }
+    public double getAnos_exp() { return anos_exp; }
+    public void setAnos_exp(double anos_exp) { this.anos_exp = anos_exp; }
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    public String getNombre_Completo() {
-        return Nombre_Completo;
-    }
-
-    public void setNombre_Completo(String nombre_Completo) {
-        Nombre_Completo = nombre_Completo;
-    }
-
-    public double getAnos_exp() {
-        return anos_exp;
-    }
-
-    public void setAnos_exp(double anos_exp) {
-        this.anos_exp = anos_exp;
-    }
-
-    // --- MÉTODO IMPRIMIR (POLIMORFISMO) ---
+    /**
+     * Implementación de la interfaz Imprimir para visualización del personal.
+     */
     @Override
     public String imprimir() {
         StringBuilder sb = new StringBuilder();

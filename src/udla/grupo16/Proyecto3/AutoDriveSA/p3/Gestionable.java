@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.util.Scanner;
 
 public interface Gestionable {
-    void ejecutarModulo(Scanner lector, Utilidades util, Connection conexion);
 
+    public void ejecutarModulo(Scanner lector, Utilidades util, Connection conexion);
+
+    /**
+     * Metodo por defecto para el control de flujo en consola.
+     */
     default void pausar(Scanner lector) {
         System.out.println("\n>>> Presione ENTER para continuar...");
         lector.nextLine();

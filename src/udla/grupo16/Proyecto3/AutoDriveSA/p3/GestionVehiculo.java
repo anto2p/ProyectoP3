@@ -1,8 +1,16 @@
 package udla.grupo16.Proyecto3.AutoDriveSA.p3;
+
 import java.sql.Connection;
 import java.util.Scanner;
 
+/**
+ * Control lógico de operaciones sobre vehículos (CRUD).
+ */
 public class GestionVehiculo implements Gestionable {
+
+    /**
+     * Ejecución del submenú de gestión vehicular.
+     */
     @Override
     public void ejecutarModulo(Scanner lector, Utilidades util, Connection conexion) {
         int opcion = 0;
@@ -16,9 +24,11 @@ public class GestionVehiculo implements Gestionable {
             System.out.print("Seleccione una opción: ");
 
             try {
+                /** Procesamiento de la selección del usuario */
                 opcion = Integer.parseInt(lector.nextLine());
                 switch (opcion) {
                     case 1:
+                        /** Registro de nuevo vehículo con validación de placa única */
                         System.out.print("Ingrese Placa: ");
                         String placa = lector.nextLine();
                         if (util.buscarVehiculo(placa, conexion) != null) {
@@ -32,6 +42,7 @@ public class GestionVehiculo implements Gestionable {
                         pausar(lector);
                         break;
                     case 2:
+                        /** Modificación de atributos de un vehículo existente */
                         System.out.print("Placa a modificar: ");
                         String pMod = lector.nextLine();
                         if (util.buscarVehiculo(pMod, conexion) != null) {
@@ -46,12 +57,14 @@ public class GestionVehiculo implements Gestionable {
                         pausar(lector);
                         break;
                     case 3:
+                        /** Eliminación física de un registro de vehículo */
                         System.out.print("Ingrese Placa para ELIMINAR: ");
                         String pDel = lector.nextLine();
                         util.eliminarVehiculo(pDel, conexion);
                         pausar(lector);
                         break;
                     case 4:
+                        /** Visualización de todo el inventario */
                         System.out.println("\n--- INVENTARIO DE VEHÍCULOS ---");
                         util.obtenerVehiculos(conexion);
                         pausar(lector);
@@ -63,9 +76,10 @@ public class GestionVehiculo implements Gestionable {
                         System.out.println(">>> Opción no válida.");
                 }
             } catch (Exception e) {
+                /** Gestión de errores de entrada y formato */
                 System.out.println(">>> ERROR: Entrada inválida.");
                 pausar(lector);
             }
         } while (opcion != 5);
-    }
-}
+    } // Cierre del método ejecutarModulo
+} // Cierre de la clase GestionVehiculo

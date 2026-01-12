@@ -1,10 +1,11 @@
 package udla.grupo16.Proyecto3.AutoDriveSA.p3;
-
 import java.sql.*;
 
 public class Utilidades {
 
-    // --- CONEXIÓN A BASE DE DATOS ---
+    /**
+     * Establece la conexión con el servidor MySQL.
+     */
     public Connection getConnection() {
         String url = "jdbc:mysql://localhost:3306/autodrivesa";
         String user = "root";
@@ -17,7 +18,9 @@ public class Utilidades {
         }
     }
 
-    // --- MAPEADORES INTERNOS ---
+    /**
+     * Transforma registros de SQL a objetos tipo Vehiculo.
+     */
     private Vehiculo mapearVehiculo(ResultSet rs) throws SQLException {
         Vehiculo v = new Vehiculo(
                 rs.getString("placa"),
@@ -29,6 +32,9 @@ public class Utilidades {
         return v;
     }
 
+    /**
+     * Transforma registros de SQL a objetos tipo Vendedor.
+     */
     private Vendedor mapearVendedor(ResultSet rs) throws SQLException {
         return new Vendedor(
                 rs.getInt("id_vendedor"),
@@ -38,7 +44,9 @@ public class Utilidades {
         );
     }
 
-    // --- MÓDULO DE VEHÍCULOS ---
+    /**
+     * Operaciones del módulo de Vehículos (Inserción, Consulta, Edición, Eliminación).
+     */
     public void insertarVehiculo(Vehiculo v, Connection conn) {
         String sql = "INSERT INTO vehiculo (placa, marca, modelo, precio, estado) VALUES (?,?,?,?,?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -116,7 +124,9 @@ public class Utilidades {
         }
     }
 
-    // --- MÓDULO DE VENDEDORES ---
+    /**
+     * Operaciones del módulo de Vendedores (Gestión de personal).
+     */
     public void insertarVendedor(Vendedor v, Connection conn) {
         String sql = "INSERT INTO vendedor (cedula, nombre_completo, anos_exp) VALUES (?,?,?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -165,7 +175,9 @@ public class Utilidades {
         }
     }
 
-    // --- MÓDULO DE VENTAS ---
+    /**
+     * Operaciones del módulo de Ventas (Facturación e Historial).
+     */
     public void insertarVenta(Venta v, Connection conn) {
         String sql = "INSERT INTO venta (montoTotal, vehiculo, vendedor) VALUES (?,?,?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
